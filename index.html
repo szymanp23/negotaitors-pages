@@ -1,0 +1,423 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NegotAItors.com — Train humanitarian negotiators with transparent AI</title>
+<meta name="description" content="AI training for humanitarian negotiators. Lifelike AI counterparts, trainer-defined scenarios and structured feedback.">
+<meta property="og:title" content="NegotAItors.com">
+<meta property="og:site_name" content="NegotAItors.com">
+<meta property="og:description" content="Practise difficult negotiations. Prepare for real conversations.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23123F46'/%3E%3Cpath d='M16 46V18h6l20 20V18h6v28h-6L22 26v20z' fill='%23D6A24A'/%3E%3C/svg%3E">
+<style>
+  :root {
+    --petrol: #123F46;
+    --bg: #F6F3ED;
+    --text: #252B2D;
+    --amber: #D6A24A;
+    --sage: #DCE7E0;
+    --white: #FFFFFF;
+    --muted: #465154;          /* softened graphite: 7:1 on bg, 6:1 on sage */
+    --line: #D9D3C7;
+    --on-petrol: #FFFFFF;
+    --on-petrol-soft: #D3E0DE; /* 8:1 on petrol */
+    --shadow: 0 1px 2px rgba(18,63,70,.06), 0 12px 32px rgba(18,63,70,.10);
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  section[id], main[id] { scroll-margin-top: 60px; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font: 16px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  img { max-width: 100%; display: block; }
+  a { color: var(--petrol); text-underline-offset: 3px; }
+  a:hover { text-decoration-thickness: 2px; }
+  :focus-visible { outline: 3px solid var(--petrol); outline-offset: 3px; border-radius: 6px; }
+  .wrap { max-width: 1060px; margin: 0 auto; padding: 0 20px; }
+  section { padding: 72px 0; }
+  h1, h2, h3 { line-height: 1.12; margin: 0; letter-spacing: -.02em; color: var(--petrol); }
+  h2 { font-size: clamp(1.7rem, 3.4vw, 2.3rem); margin-bottom: 14px; }
+  h3 { font-size: 1.1rem; letter-spacing: -.01em; margin-bottom: 6px; }
+  p { margin: 0 0 1em; }
+  .eyebrow { font-size: .78rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--petrol); margin-bottom: 10px; display: flex; align-items: center; gap: 10px; }
+  .eyebrow::before { content: ""; width: 22px; height: 3px; border-radius: 2px; background: var(--amber); }
+  .lede { font-size: 1.12rem; color: var(--muted); max-width: 640px; }
+
+  /* nav */
+  header.nav { position: sticky; top: 0; z-index: 10; background: var(--petrol); }
+  .nav-in { display: flex; align-items: center; gap: 20px; height: 60px; }
+  .brand { font-weight: 800; font-size: 1.2rem; color: var(--on-petrol); text-decoration: none; letter-spacing: -.02em; }
+  .brand b { color: var(--amber); }
+  .nav-links { display: flex; gap: 26px; margin-left: auto; align-items: center; }
+  .nav-links a { color: var(--on-petrol-soft); text-decoration: none; font-size: .92rem; }
+  .nav-links a:hover { color: var(--on-petrol); text-decoration: underline; text-decoration-color: var(--amber); }
+  header :focus-visible, footer :focus-visible { outline-color: var(--amber); }
+  @media (max-width: 760px) { .nav-links { gap: 16px; } .nav-links a.hide-sm { display: none; } }
+
+  /* buttons: amber = main call to action, outline = secondary */
+  .btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 22px; border-radius: 10px; font-weight: 650; text-decoration: none; border: 2px solid var(--petrol); color: var(--petrol); background: transparent; transition: transform .12s, box-shadow .12s, background .12s; font-size: .98rem; }
+  .btn:hover { transform: translateY(-1px); box-shadow: var(--shadow); background: var(--white); }
+  .btn.primary { background: var(--amber); border-color: var(--amber); color: var(--text); }
+  .btn.primary:hover { background: #e0b061; }
+  .btn.petrol { background: var(--petrol); color: var(--on-petrol); }
+  .btn.petrol:hover { background: #0c2f35; }
+  .btn.small { padding: 8px 16px; font-size: .9rem; }
+  .btn-row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+
+  /* hero */
+  .hero { padding: 64px 0 40px; position: relative; overflow: hidden; }
+  .hero-grid { display: grid; grid-template-columns: 1.05fr .95fr; gap: 24px; align-items: center; }
+  .hero h1 { font-size: clamp(2.3rem, 5.4vw, 3.7rem); margin-bottom: 20px; }
+  .hero h1 span { color: #1b6a73; }
+  .hero-img { position: relative; }
+  .hero-img img { width: 100%; -webkit-mask-image: linear-gradient(to right, transparent 0, #000 22%); mask-image: linear-gradient(to right, transparent 0, #000 22%); border-radius: 0 0 0 40px; }
+  @media (max-width: 860px) { .hero-grid { grid-template-columns: 1fr; } .hero-img { order: -1; } .hero-img img { -webkit-mask-image: none; mask-image: none; border-radius: 20px; } }
+
+  /* app preview */
+  .app-shot { padding: 24px 0 56px; }
+  .app-shot figure { margin: 0; }
+  .app-shot img { width: 100%; height: auto; mix-blend-mode: multiply; } /* the screenshot has a white backdrop; blend it into the warm page background */
+  figcaption { color: var(--muted); font-size: .88rem; margin-top: 12px; text-align: center; }
+
+  /* value cards */
+  .values { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 18px; padding: 0 20px 72px; }
+  .value { background: var(--white); border: 1px solid var(--line); border-radius: 16px; padding: 24px; display: flex; gap: 16px; }
+  .ic { flex: none; width: 48px; height: 48px; border-radius: 50%; background: var(--sage); display: grid; place-items: center; }
+  .ic svg { width: 24px; height: 24px; fill: none; stroke: var(--petrol); stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+  .value p { color: var(--muted); font-size: .95rem; margin: 0; }
+
+  /* principle */
+  .principle { background: var(--sage); }
+  .split { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 32px; }
+  @media (max-width: 760px) { .split { grid-template-columns: 1fr; } }
+  .card { background: var(--white); border: 1px solid var(--line); border-radius: 16px; padding: 24px; }
+  .card .tag { font-size: .72rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; padding: 3px 10px; border-radius: 99px; display: inline-block; margin-bottom: 12px; }
+  .tag.llm { background: var(--amber); color: var(--text); }
+  .tag.rules { background: var(--petrol); color: var(--on-petrol); }
+  .card ul { margin: 0; padding-left: 18px; color: var(--muted); }
+  .card li { margin: 4px 0; }
+
+  /* steps */
+  .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 22px; margin-top: 32px; counter-reset: s; }
+  .step { counter-increment: s; }
+  .step-head { display: flex; align-items: center; gap: 12px; margin-bottom: 8px; }
+  .step-head::before { content: counter(s); flex: none; display: grid; place-items: center; width: 34px; height: 34px; border-radius: 50%; background: var(--amber); color: var(--text); font-weight: 800; }
+  .step-head h3 { margin: 0; }
+  .step p { color: var(--muted); font-size: .95rem; }
+  .step img { width: 100%; border-radius: 12px; border: 1px solid var(--line); background: var(--white); }
+  .step img.ui-img { aspect-ratio: 830 / 522; object-fit: cover; }
+  .ui { background: var(--white); border: 1px solid var(--line); border-radius: 12px; padding: 14px; box-shadow: var(--shadow); }
+  .ui-title { font-weight: 700; color: var(--petrol); margin-bottom: 10px; }
+  .ui-search { display: flex; align-items: center; gap: 8px; background: var(--bg); border-radius: 8px; padding: 7px 10px; font-size: .85rem; color: var(--muted); margin-bottom: 10px; }
+  .ui-search svg { width: 16px; height: 16px; fill: none; stroke: var(--muted); stroke-width: 2; stroke-linecap: round; }
+  .ui-item { display: flex; align-items: center; gap: 10px; border: 1px solid var(--line); border-radius: 10px; padding: 9px 10px; margin-top: 8px; }
+  .ui-item.on { border: 2px solid var(--amber); padding: 8px 9px; }
+  .ui-item span:not(.ic) { flex: 1; min-width: 0; }
+  .ui-item b, .ui-note b { display: block; font-size: .88rem; color: var(--text); }
+  .ui-item small, .ui-note small { display: block; font-size: .78rem; color: var(--muted); line-height: 1.4; }
+  .ui-item i { font-style: normal; font-size: 1.3rem; color: var(--muted); }
+  .ic.sm { width: 34px; height: 34px; }
+  .ic.sm svg { width: 18px; height: 18px; }
+  .ui-tabs { display: flex; gap: 16px; border-bottom: 1px solid var(--line); font-size: .82rem; color: var(--muted); margin-bottom: 12px; }
+  .ui-tabs span { padding: 0 0 8px; }
+  .ui-tabs .on { color: var(--petrol); font-weight: 700; border-bottom: 3px solid var(--petrol); margin-bottom: -1px; }
+  .ui-note { display: flex; gap: 10px; background: var(--bg); border: 1px solid var(--line); border-radius: 10px; padding: 12px; }
+
+  /* scenarios */
+  .scen { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; margin-top: 32px; }
+  .scen .card { padding: 20px; border-top: 4px solid var(--amber); }
+  .pill { font-size: .75rem; font-weight: 600; background: var(--sage); padding: 3px 10px; border-radius: 99px; color: var(--text); }
+  .scen p { color: var(--muted); font-size: .93rem; margin: 8px 0 0; }
+  .fine { margin-top: 28px; color: var(--muted); font-size: .92rem; }
+
+  /* about */
+  .people { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 18px; margin-top: 28px; }
+  .person { background: var(--white); border: 1px solid var(--line); border-radius: 16px; padding: 22px; display: flex; align-items: center; gap: 18px; flex-wrap: wrap; }
+  .avatar { flex: none; width: 96px; height: 96px; border-radius: 50%; object-fit: cover; background: var(--sage); border: 3px solid var(--white); box-shadow: 0 0 0 2px var(--amber); }
+  .person h3 { margin: 0 0 8px; }
+
+  /* contact */
+  .contact { background: var(--sage); }
+  .contact .btn-row { margin-top: 24px; }
+  .contact-grid { display: grid; grid-template-columns: 1fr 1.1fr; gap: 40px; align-items: start; }
+  @media (max-width: 800px) { .contact-grid { grid-template-columns: 1fr; } }
+  .contact .mail { margin-top: 4px; }
+  .form { display: grid; gap: 14px; }
+  .form .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  @media (max-width: 520px) { .form .row2 { grid-template-columns: 1fr; } }
+  .form label { display: grid; gap: 6px; font-size: .85rem; font-weight: 600; color: var(--text); }
+  .form input, .form textarea { font: inherit; font-weight: 400; color: var(--text); background: var(--white); border: 1px solid #9aa7a3; border-radius: 8px; padding: 10px 12px; width: 100%; }
+  .form textarea { resize: vertical; min-height: 120px; }
+  .form input:focus-visible, .form textarea:focus-visible { outline: 3px solid var(--petrol); outline-offset: 1px; }
+  .form [aria-invalid="true"] { border-color: #b3261e; border-width: 2px; }
+  .form button { justify-content: center; cursor: pointer; font-family: inherit; }
+  .form-note { font-size: .85rem; color: var(--muted); margin: 0; }
+  .form-note a { color: var(--petrol); font-weight: 600; }
+  .form-note.err { color: #b3261e; font-weight: 600; }
+  [hidden] { display: none !important; }
+
+  footer { background: var(--petrol); color: var(--on-petrol-soft); padding: 36px 0 40px; font-size: .92rem; }
+  footer strong { color: var(--on-petrol); font-size: 1.15rem; }
+  footer strong b { color: var(--amber); }
+  footer a { color: var(--on-petrol); }
+  .foot { display: flex; flex-wrap: wrap; gap: 14px 28px; justify-content: space-between; align-items: center; }
+
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; scroll-behavior: auto !important; } }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="#top">Negot<b>AI</b>tors.com</a>
+    <nav class="nav-links" aria-label="Main">
+      <a class="hide-sm" href="#product">Product</a>
+      <a class="hide-sm" href="#how">How it works</a>
+      <a class="hide-sm" href="#about">About us</a>
+      <a href="#contact">Contact us</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow">AI training for humanitarian negotiators</div>
+      <h1>Practise difficult negotiations. <span>Prepare for real conversations.</span></h1>
+      <p class="lede">Lifelike AI counterparts, trainer-defined scenarios and structured feedback for humanitarian negotiation practice.</p>
+      <div class="btn-row">
+        <a class="btn primary" href="#how">See how it works &darr;</a>
+        <a class="btn" href="#contact">Contact us</a>
+      </div>
+    </div>
+    <div class="hero-img">
+      <img src="assets/hero.png" width="406" height="373" alt="A convoy of aid trucks on a dusty road below mountains">
+    </div>
+  </div>
+</section>
+
+<!-- APP PREVIEW -->
+<section class="app-shot" id="product">
+  <div class="wrap">
+    <figure>
+      <img src="assets/app.webp" width="1586" height="992" alt="The training screen: an AI counterpart on video, the trainee's objective, scenario context, coach hints and a live transcript">
+      <figcaption>A training session: a lifelike counterpart, the objective, context, coach hints and a live transcript.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- VALUES -->
+<div class="wrap values">
+  <div class="value">
+    <div class="ic" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg></div>
+    <div><h3>Lifelike avatars</h3><p>Engage with realistic AI counterparts that respond dynamically and naturally.</p></div>
+  </div>
+  <div class="value">
+    <div class="ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 3h9l4 4v14H6z"/><path d="M9 11h7M9 15h7"/></svg></div>
+    <div><h3>Scenarios shaped by trainers</h3><p>Practise with scenarios designed by experienced trainers to reflect real-world situations.</p></div>
+  </div>
+  <div class="value">
+    <div class="ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 20V10M12 20V4M19 20v-8"/></svg></div>
+    <div><h3>Feedback after every session</h3><p>Receive structured feedback to identify strengths and areas for development.</p></div>
+  </div>
+</div>
+
+<!-- PRINCIPLE -->
+<section class="principle" id="principle">
+  <div class="wrap">
+    <div class="eyebrow">The idea</div>
+    <h2>The AI plays the character. The rules decide what happens.</h2>
+    <p class="lede">Most AI role-play is a black box: you never know why the character changed its mind. Here the model never decides the outcome. It only speaks.</p>
+    <div class="split">
+      <div class="card">
+        <span class="tag llm">The AI</span>
+        <h3>Speaks and observes</h3>
+        <ul>
+          <li>Plays the character, in character</li>
+          <li>Detects which behaviours the trainee showed</li>
+          <li>Writes the final debrief</li>
+        </ul>
+      </div>
+      <div class="card">
+        <span class="tag rules">The rules</span>
+        <h3>Decide, in the open</h3>
+        <ul>
+          <li>Move the dials: mood, trust, willingness</li>
+          <li>Trigger events and injects</li>
+          <li>Determine success or failure</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW -->
+<section id="how">
+  <div class="wrap">
+    <div class="eyebrow">How it works</div>
+    <h2>A simple process for realistic practice.</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="step-head"><h3>Choose a scenario</h3></div>
+        <p>Select from a range of trainer-defined humanitarian negotiation scenarios.</p>
+        <div class="ui" aria-label="Example scenario list">
+          <div class="ui-title">Scenarios</div>
+          <div class="ui-search"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6"/><path d="M20 20l-4-4"/></svg>Search scenarios&hellip;</div>
+          <div class="ui-item on"><span class="ic sm" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.5"/><path d="M5 20c0-3.6 3.1-6 7-6s7 2.4 7 6"/></svg></span><span><b>Checkpoint access</b><small>Negotiate safe passage for an aid convoy.</small></span><i aria-hidden="true">&rsaquo;</i></div>
+          <div class="ui-item"><span class="ic sm" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 5h14v10H9l-4 4z"/></svg></span><span><b>Detention of staff</b><small>Discuss the release of humanitarian staff.</small></span><i aria-hidden="true">&rsaquo;</i></div>
+          <div class="ui-item"><span class="ic sm" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 8l8-4 8 4v8l-8 4-8-4z"/><path d="M4 8l8 4 8-4M12 12v8"/></svg></span><span><b>Medical supplies</b><small>Address restrictions on critical supplies.</small></span><i aria-hidden="true">&rsaquo;</i></div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-head"><h3>Practise the conversation</h3></div>
+        <p>Talk with a lifelike AI counterpart in a realistic and responsive simulation.</p>
+        <img class="ui-img" src="assets/step2.webp" width="830" height="522" alt="The AI counterpart on video with a microphone, a sound wave and an end-session button" loading="lazy">
+      </div>
+      <div class="step">
+        <div class="step-head"><h3>Review and reflect</h3></div>
+        <p>Get structured feedback after every session.</p>
+        <div class="ui" aria-label="Example session feedback">
+          <div class="ui-title">Session feedback</div>
+          <div class="ui-tabs"><span class="on">Summary</span><span>Strengths</span><span>Areas to develop</span></div>
+          <div class="ui-note"><span class="ic sm" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3.5"/></svg></span><span><b>Overall</b><small>You built rapport and explored the other party's concerns well. Consider asking more open questions to understand their constraints in greater depth.</small></span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SCENARIOS -->
+<section id="scenarios" style="padding-top:0">
+  <div class="wrap">
+    <div class="eyebrow">Scenarios</div>
+    <h2>Four situations to practise</h2>
+    <p class="lede">Every scenario is built around one character with their own goals, fears and red lines. Trainers can adapt all of it.</p>
+    <div class="scen">
+      <div class="card"><span class="pill">Access</span><h3 style="margin-top:12px">The Closed Bridge</h3><p>Floodwater has cut the district off. The only crossing is held by a militia commander who answers to a local council and wants guarantees. Get the relief trucks across.</p></div>
+      <div class="card"><span class="pill">Protection</span><h3 style="margin-top:12px">Night at the Border Post</h3><p>A group of displaced families is stranded at a closed crossing. The duty officer fears for their career. Win a medical transfer before dawn.</p></div>
+      <div class="card"><span class="pill">Essential services</span><h3 style="margin-top:12px">The Last Water Tower</h3><p>A besieging commander controls the pumping station that supplies a town. Persuade them to let a repair crew work safely.</p></div>
+      <div class="card"><span class="pill">Detention</span><h3 style="margin-top:12px">The Detainee List</h3><p>A regional security chief holds the only list of detainees. Build enough trust to get access, and a way for families to send news.</p></div>
+    </div>
+    <p class="fine">All characters and places are fictional.</p>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" style="padding-top:0">
+  <div class="wrap">
+    <div class="eyebrow">About us</div>
+    <h2>Meet the people behind NegotAItors.com</h2>
+    <p class="lede">Izabela and Piotr were members of the winning team of the ICRC challenge at the Geneva {ai} Hackathon. They are now developing NegotAItors.com as an independent project focused on humanitarian negotiation training.</p>
+    <div class="people">
+      <div class="person">
+        <img class="avatar" src="assets/izabela-kot.webp" width="240" height="240" alt="Portrait of Izabela Kot" loading="lazy">
+        <div><h3>Izabela Kot</h3><a class="btn small" data-li="ik" href="#contact" hidden>LinkedIn &nearr;</a></div>
+      </div>
+      <div class="person">
+        <img class="avatar" src="assets/piotr-szymanski.webp" width="240" height="240" alt="Portrait of Piotr Szyma&#324;ski" loading="lazy">
+        <div><h3>Piotr Szyma&#324;ski</h3><a class="btn small" data-li="ps" href="#contact" hidden>LinkedIn &nearr;</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="wrap contact-grid">
+    <div>
+      <div class="eyebrow">Contact us</div>
+      <h2>Let's connect.</h2>
+      <p class="lede">Interested in using NegotAItors, collaborating with us or discussing the product? Send us a message.</p>
+      <div class="btn-row">
+        <a class="btn petrol small" data-li="ik" href="#contact" hidden>Izabela Kot on LinkedIn &nearr;</a>
+        <a class="btn petrol small" data-li="ps" href="#contact" hidden>Piotr Szyma&#324;ski on LinkedIn &nearr;</a>
+      </div>
+    </div>
+
+    <form class="form" id="contact-form" novalidate>
+      <div class="row2">
+        <label><span>Name <span aria-hidden="true">*</span></span><input name="name" autocomplete="name" required></label>
+        <label><span>Email <span aria-hidden="true">*</span></span><input name="email" type="email" autocomplete="email" required></label>
+      </div>
+      <label><span>Organisation (optional)</span><input name="org" autocomplete="organization"></label>
+      <label><span>Message <span aria-hidden="true">*</span></span><textarea name="message" rows="5" required></textarea></label>
+      <button class="btn primary" type="submit">Send message</button>
+      <p class="form-note" id="form-note" role="status"></p>
+      <p class="form-note">We use your details to respond to your enquiry. Our contact form is processed through Formspree. Read our <a href="privacy.html">Privacy notice</a> for details.</p>
+    </form>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <strong>Negot<b>AI</b>tors.com</strong>
+    <span>An independent project inspired by our participation in the Geneva {ai} Hackathon&rsquo;s ICRC challenge.</span>
+    <a href="privacy.html">Privacy notice</a>
+  </div>
+</footer>
+
+<script>
+  (function () {
+    // LinkedIn profile URLs. A button stays hidden until its URL is filled in.
+    var LINKEDIN = {
+      ik: 'https://www.linkedin.com/in/kotizabela/',
+      ps: 'https://www.linkedin.com/in/piotr-szymanski-91ab22b7/'
+    };
+
+    Object.keys(LINKEDIN).forEach(function (k) {
+      if (!LINKEDIN[k]) return;
+      document.querySelectorAll('[data-li="' + k + '"]').forEach(function (a) {
+        a.href = LINKEDIN[k]; a.target = '_blank'; a.rel = 'noopener'; a.hidden = false;
+      });
+    });
+
+
+    // Messages go through Formspree, so no email address appears anywhere on the page.
+    var ENDPOINT = 'https://formspree.io/f/mwlpggqj';
+
+    var form = document.getElementById('contact-form'), note = document.getElementById('form-note');
+    function say(msg, err) { note.className = 'form-note' + (err ? ' err' : ''); note.textContent = msg; }
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var f = form.elements, ok = true;
+      ['name', 'email', 'message'].forEach(function (k) {
+        var v = f[k].value.trim();
+        var bad = !v || (k === 'email' && !/^\S+@\S+\.\S+$/.test(v));
+        f[k].setAttribute('aria-invalid', bad ? 'true' : 'false');
+        if (bad) ok = false;
+      });
+      if (!ok) { say('Please fill in your name, a valid email and a message.', true); return; }
+
+      say('Sending…');
+      fetch(ENDPOINT, { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' } })
+        .then(function (r) {
+          if (!r.ok) throw new Error();
+          form.reset();
+          say('Thank you. Your message has been sent.');
+        })
+        .catch(function () { say('Sorry, the message could not be sent. Please try again later.', true); });
+    });
+
+    document.addEventListener('click', function (e) {
+      var a = e.target.closest && e.target.closest('a[href^="#"]');
+      if (!a) return;
+      var el = document.getElementById(a.getAttribute('href').slice(1));
+      if (!el) return;
+      e.preventDefault();
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      try { history.replaceState(null, '', a.getAttribute('href')); } catch (err) {}
+    });
+  })();
+</script>
+</body>
+</html>
